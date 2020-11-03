@@ -1,12 +1,7 @@
-<script lang="ts">
+<script>
 import { root, components, debug, rndHex, Frame, Tab } from "./common";
 import TAB from "./TAB.svelte";
-export let x: number,
-           y: number,
-           w: number,
-           h: number,
-           f: Frame;
-
+export let x, y, w, h, f; 
 $: xa = f.layout ? x       : x;
 $: ya = f.layout ? y       : y;
 $: wa = f.layout ? bar     : w;
@@ -16,31 +11,26 @@ $: yb = f.layout ? y : y + bar;
 $: wb = f.layout ? w - bar : w;
 $: hb = f.layout ? h : h - bar;
 
-let col:   string = rndHex();
-let ratio: number = 0.5;
+let col = rndHex();
+let ratio = 0.5;
 $: len = f.layout ? w : h;
 $: bar = ratio * len;
 
-const drag_bgn = (e: DragEvent) => {
+const drag_bgn = (e) => {
     e.dataTransfer.setDragImage(new Image(), 0, 0)
     ratio = (f.layout ? e.pageX - x : e.pageY - y) / len;
 }
 
-const drag_ing = (e: DragEvent) => {
+const drag_ing = (e) => {
     const to = f.layout ? e.pageX - x : e.pageY - y;
     if(Math.abs(to - bar) < 30) ratio = to / len;
 }
 
-const drag_fin = (e: DragEvent) => {
+const drag_fin = (e) => {
     ratio = (f.layout ? e.pageX - x : e.pageY - y) / len;
 }
 
-const split = (tid: string, 
-               fid: string,
-               fnew: Frame,
-               fold: Frame,
-               is_new_first: boolean,
-               horizontal: boolean) => {
+const split = (tid, fid, fnew, fold, is_new_first, horizontal) => {
     f.tabs = [];
     f.layout = horizontal;
     f.frames = is_new_first? [fnew, fold] : [fold, fnew];
@@ -48,7 +38,7 @@ const split = (tid: string,
     root.remove_tab(tid, fold.uuid);
 }
 
-const drop_tab = (e: DragEvent) => {
+const drop_tab = (e) => {
     const tid = e.dataTransfer.getData("tid");
     const ffr = e.dataTransfer.getData("fid_fr");
     const nx = (e.pageX - x) / w, ny = (e.pageY - y) / h;

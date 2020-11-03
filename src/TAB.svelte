@@ -1,13 +1,13 @@
-<script lang="ts">
-import { Frame, root, Tab, debug, components, rndHex } from "./common";
-export let t: Tab;
-export let f: Frame;
-export let o: number;
+<script>
+import { root, debug, components, rndHex } from "./common";
+export let t;
+export let f;
+export let o;
 
 let col = rndHex();
 let tgt = $components.find(c => c.type === t.comp);
 
-const drag_str = (e: DragEvent) => {
+const drag_str = (e) => {
     e.dataTransfer.setDragImage(new Image(), 0, 0)
     e.dataTransfer.setData("tid", t.uuid);
     e.dataTransfer.setData("fid_fr", f.uuid);
