@@ -8,7 +8,7 @@ export class Frame {
     frames; // length must be 0 or 2 in stable
     tabs;   // only when frames.len == 0
 
-    constructor(frames, tabs, stage = -1, layout = false){
+    constructor(frames, tabs, layout = false){
         this.uuid = uuidv4();
         this.ratio = 0.5;
         this.frames = frames;
@@ -79,7 +79,7 @@ export class Tab {
     }
 }
 
-export class Comp{
+export class Comp {
     type;
     comp;
     constructor(type, comp){

@@ -8,6 +8,7 @@ let col = rndHex();
 let tgt = $components.find(c => c.type === t.comp);
 
 const drag_str = (e) => {
+    t.comp = tgt.type;
     e.dataTransfer.setDragImage(new Image(), 0, 0)
     e.dataTransfer.setData("tid", t.uuid);
     e.dataTransfer.setData("fid_fr", f.uuid);
