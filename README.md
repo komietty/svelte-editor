@@ -1,8 +1,9 @@
 # Svelditor
 Tab ui editor library for svelte.
 
-## Usage
+<img src="img/output.gif" width=100%>
 
+## Usage
 Import lib by npm.
 ```
 npm i svelditor

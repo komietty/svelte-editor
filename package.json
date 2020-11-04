@@ -1,6 +1,6 @@
 {
   "name": "svelditor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "tab base editor ui library with svelte",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
