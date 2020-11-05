@@ -1,6 +1,6 @@
 {
   "name": "svelditor",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "tab base editor ui library with svelte",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -8,6 +8,10 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/komietty/svelditor"
   },
   "keywords": [
     "svelte",
@@ -17,7 +21,7 @@
     "ui"
   ],
   "author": "Saki Komikado <komietty@gmail.com> (http://sakikomikado.com)",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "rollup": "^2.33.1",
     "rollup-plugin-bundle-size": "^1.0.3",
