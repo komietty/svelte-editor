@@ -1,21 +1,21 @@
-<script>
-import { root, debug, components, rndHex } from "./common";
-export let t;
-export let f;
-export let o;
+<script lang='ts'>
+import { root, debug, components, rndHex, Frame, Tab, Comp } from "../common.js";
+export let t: Tab;
+export let f: Frame;
+export let o: number;
 
-let col = rndHex();
-let tgt = $components.find(c => c.type === t.comp);
+let col: string = rndHex();
+let tgt: Comp = $components.find(c => c.type === t.comp);
 
-const drag_str = (e) => {
+const drag_str = (e: DragEvent) => {
     t.comp = tgt.type;
     e.dataTransfer.setDragImage(new Image(), 0, 0)
     e.dataTransfer.setData("tid", t.uuid);
     e.dataTransfer.setData("fid_fr", f.uuid);
 }
 
-const close    = () => root.remove_tab(t.uuid, f.uuid);
-const activate = () => root.activate_tab(t, f);
+const close    = (): void => root.remove_tab(t.uuid, f.uuid);
+const activate = (): void => root.activate_tab(t, f);
 </script>
 
 <div id="tab" style="--l:{o * 150}px; --c:{col};">

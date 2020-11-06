@@ -8,7 +8,7 @@ export class Frame {
     frames; // length must be 0 or 2 in stable
     tabs;   // only when frames.len == 0
 
-    constructor(frames, tabs, layout = false){
+    constructor(frames, tabs, layout){
         this.uuid = uuidv4();
         this.ratio = 0.5;
         this.frames = frames;
@@ -16,7 +16,7 @@ export class Frame {
         this.tabs   = tabs;
     }
 
-    removable() {
+    removable(){
         return this.frames.length === 0 && this.tabs.length === 0;
     }
 
@@ -44,7 +44,7 @@ export class Frame {
         for (let f of this.frames) f.activeCheck()
     }
 
-    findFrame(uuid) {
+    findFrame(uuid){
         const stack = [this, ...this.frames];
         while(stack.length > 0){
             const f = stack.shift();
@@ -54,7 +54,7 @@ export class Frame {
         throw new Error("could not find uuid");
     }
 
-    findTab(uuid) {
+    findTab(uuid){
         const stack = [...this.frames];
         while(stack.length > 0){
             const f = stack.shift();
@@ -130,7 +130,7 @@ export const root = gen_tree();
 export const components = writable([]);
 export let debug = writable(false);
 
-export const rndHex = () => {
+export function rndHex(){
     return '#' + [...Array(6)]
         .map(() => Math.floor(Math.random() * 16)
         .toString(16))

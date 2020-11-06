@@ -4,10 +4,15 @@
   "description": "tab base editor ui library with svelte",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
+  "types": "src/index.d.ts",
   "svelte": "src/index.js",
+  "bundleDependencies": false,
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w"
+    "local-tsc": "tsc",
+    "prepublishOnly": "npm run build",
+    "svelte-check": "svelte-check",
+    "test": "echo 'No test specified' && exit 1"
   },
   "repository": {
     "type": "git",
@@ -23,12 +28,18 @@
   "author": "Saki Komikado <komietty@gmail.com> (http://sakikomikado.com)",
   "license": "MIT",
   "devDependencies": {
-    "rollup": "^2.33.1",
-    "rollup-plugin-bundle-size": "^1.0.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-svelte": "^6.1.0",
-    "svelte": "^3.29.4"
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "@rollup/plugin-typescript": "^5.0.2",
+    "prettier": "^2.0.5",
+    "rollup": "^2.22.2",
+    "rollup-plugin-svelte": "^5.2.3",
+    "rollup-plugin-terser": "^6.1.0",
+    "svelte": "^3.24.0",
+    "svelte-check": "^0.1.55",
+    "svelte-preprocess": "^4.0.8",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.7"
   },
   "dependencies": {
     "uuid": "^8.3.1"

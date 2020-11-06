@@ -1,7 +1,11 @@
-<script>
-import { root, components, debug, rndHex, Frame, Tab } from "./common";
+<script lang='ts'>
+import { root, components, debug, rndHex, Frame, Tab } from "../common.js";
 import TAB from "./TAB.svelte";
-export let x, y, w, h, f; 
+export let x: number, 
+           y: number,
+           w: number,
+           h: number,
+           f: Frame; 
 $: xa = f.layout ? x       : x;
 $: ya = f.layout ? y       : y;
 $: wa = f.layout ? bar     : w;
@@ -11,26 +15,31 @@ $: yb = f.layout ? y : y + bar;
 $: wb = f.layout ? w - bar : w;
 $: hb = f.layout ? h : h - bar;
 
-let col = rndHex();
-let ratio = 0.5;
+let col:   string = rndHex();
+let ratio: number = 0.5;
 $: len = f.layout ? w : h;
 $: bar = ratio * len;
 
-const drag_bgn = (e) => {
+const drag_bgn = (e: DragEvent) => {
     e.dataTransfer.setDragImage(new Image(), 0, 0)
     ratio = (f.layout ? e.pageX - x : e.pageY - y) / len;
 }
 
-const drag_ing = (e) => {
+const drag_ing = (e: DragEvent) => {
     const to = f.layout ? e.pageX - x : e.pageY - y;
     if(Math.abs(to - bar) < 30) ratio = to / len;
 }
 
-const drag_fin = (e) => {
+const drag_fin = (e: DragEvent) => {
     ratio = (f.layout ? e.pageX - x : e.pageY - y) / len;
 }
 
-const split = (tid, fid, fnew, fold, is_new_first, horizontal) => {
+const split = (tid: string, 
+               fid: string,
+               fnew: Frame,
+               fold: Frame,
+               is_new_first: boolean,
+               horizontal: boolean): void => {
     f.tabs = [];
     f.layout = horizontal;
     f.frames = is_new_first? [fnew, fold] : [fold, fnew];
@@ -38,7 +47,7 @@ const split = (tid, fid, fnew, fold, is_new_first, horizontal) => {
     root.remove_tab(tid, fold.uuid);
 }
 
-const drop_tab = (e) => {
+const drop_tab = (e: DragEvent): void  => {
     const tid = e.dataTransfer.getData("tid");
     const ffr = e.dataTransfer.getData("fid_fr");
     const nx = (e.pageX - x) / w, ny = (e.pageY - y) / h;
@@ -48,8 +57,8 @@ const drop_tab = (e) => {
     if(!tid) return;
     if(x1 && x2 && y1 && y2) { root.move_tab(tid, ffr, f.uuid); }
     else {
-        const fn = new Frame([], []),
-              fo = new Frame([], [...f.tabs]);
+        const fn = new Frame([], [], false),
+              fo = new Frame([], [...f.tabs], false);
         if(x1 && x2){
             if(!y1) split(tid, ffr, fn, fo, true,  false); // top
             if(!y2) split(tid, ffr, fn, fo, false, false); // btm
@@ -61,7 +70,7 @@ const drop_tab = (e) => {
     }
 }
 
-const create_tab = () => {
+const create_tab = (): void => {
     f.tabs = [...f.tabs, new Tab($components[0].type, f)];
 }
 
