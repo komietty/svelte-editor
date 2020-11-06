@@ -49,7 +49,7 @@ col_tab_actv.set('#f5f5f5');
 <img src="img/color.png" width=100%>
 
 
-You can check uuid of tab or frame 
+You can check uuid of tab or frame, with `debug` option enabled.
 ```js
 debug.set(true);
 ```
