@@ -10,7 +10,7 @@ Import svelditor by npm.
 ```
 npm i svelditor
 ```
-then in your app, you have to define components and root frame to start with.
+Then in your app, All you have to define components and root frame to start with.
 
 ```Svelte
 <script>
@@ -27,9 +27,6 @@ components.set( [new Comp('CompA', CompA), new Comp('CompB', CompB)] );
 const rootFrame = new Frame([], []);
 rootFrame.tabs.push(new Tab('CompA', rootFrame.frames[0]));
 root.init(rootFrame);
-
-// options
-debug.set(true);
 </script>
 
 <!-- place tabs in absolute coordinate -->
