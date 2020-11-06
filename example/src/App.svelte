@@ -24,11 +24,11 @@ rootFrame.tabs.push(new Tab('CompA', rootFrame.frms[0]));
 root.init(rootFrame);
 
 // options
-debug.set(false);
-col_frame.set('clear');
-col_tab_text.set('#000000');
-col_tab_dflt.set('#c5c5c5');
-col_tab_actv.set('#d5d5d5');
+debug.set(true);
+//col_frame.set('clear');
+//col_tab_text.set('#333333');
+//col_tab_dflt.set('#c5c5c5');
+//col_tab_actv.set('#f5f5f5');
 </script>
  
 <!-- place tabs in absolute coordinate -->

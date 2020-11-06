@@ -1,5 +1,5 @@
 <div id="c">
-    <p id="t"> This is a test component A. </p>
+    <p id="t">Test component A</p>
     <p> You can put any svelte component here. </p>
 </div>
 

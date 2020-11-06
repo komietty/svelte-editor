@@ -1,5 +1,5 @@
 <div id="c">
-    <p id="t"> This is a test component B. </p>
+    <p id="t">Test component B</p>
     <p> You can put any svelte component here. </p>
 </div>
 
@@ -9,9 +9,9 @@
         width: 100%;
         height: 100%;
         box-sizing: border-box;
-        border: 1px solid #ffff55;
+        border: 1px solid #0055ff;
     }
     #c #t {
-        color: #ffff55;
+        color: #0055ff;
     }
 </style>
