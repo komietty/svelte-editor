@@ -1,6 +1,6 @@
 {
   "name": "svelditor",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "tab base editor ui library with svelte",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -23,7 +23,8 @@
     "javascript",
     "typescript",
     "editor",
-    "ui"
+    "ui",
+    "tab"
   ],
   "author": "Saki Komikado <komietty@gmail.com> (http://sakikomikado.com)",
   "license": "MIT",

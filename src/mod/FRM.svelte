@@ -1,5 +1,13 @@
 <script lang='ts'>
-import { root, components, debug, rndHex, Frame, Tab } from "../common.js";
+import { root,
+         debug,
+         components,
+         col_frame,
+         col_tab_text,
+         rndHex,
+         Frame,
+         Tab
+} from "../common.js";
 import TAB from "./TAB.svelte";
 export let x: number, 
            y: number,
@@ -41,8 +49,8 @@ const split = (tid: string,
                is_new_first: boolean,
                horizontal: boolean): void => {
     f.tabs = [];
+    f.frms = is_new_first? [fnew, fold] : [fold, fnew];
     f.layout = horizontal;
-    f.frames = is_new_first? [fnew, fold] : [fold, fnew];
     root.move_tab(tid, fid, fnew.uuid);
     root.remove_tab(tid, fold.uuid);
 }
@@ -79,28 +87,28 @@ const create_tab = (): void => {
 <div id="f"
     class:h={f.layout}
     class:v={!f.layout}
-    style='--w:{w}px; --h:{h}px; --c:{col}; --pr:{bar}px;'
+    style='--w:{w}px; --h:{h}px; --bgc:{$col_frame}; --text:{$col_tab_text}'
     on:dragover={e => e.preventDefault()}
     on:drop|preventDefault|stopPropagation={drop_tab}>
     {#if $debug}
         <span style="position:absolute; right:35px; top:5px; color:{col};">{f.tabs.length}</span>
         <span style="position:absolute; right:55px; top:5px; color:{col};">{f.uuid.slice(0, 5)}</span>
     {/if}
-    {#if f.frames.length == 2}
+    {#if f.frms.length == 2}
         {#if f.layout}
-            <svelte:self x={xa} y={ya} w={wa - 3} h={ha} f={f.frames[0]}/>
-            {#if f.frames.length === 2}
+            <svelte:self x={xa} y={ya} w={wa - 3} h={ha} f={f.frms[0]}/>
+            {#if f.frms.length === 2}
             <div id="bh" draggable="true" on:dragstart={drag_bgn} on:drag={drag_ing} on:dragend={drag_fin}/> 
             {/if}
-            <svelte:self x={xb} y={yb} w={wb - 3} h={hb} f={f.frames[1]}/>
+            <svelte:self x={xb} y={yb} w={wb - 3} h={hb} f={f.frms[1]}/>
         {:else}
-            <svelte:self x={xa} y={ya} w={wa} h={ha - 3} f={f.frames[0]}/>
-            {#if f.frames.length === 2}
+            <svelte:self x={xa} y={ya} w={wa} h={ha - 3} f={f.frms[0]}/>
+            {#if f.frms.length === 2}
             <div id="bv" draggable="true" on:dragstart={drag_bgn} on:drag={drag_ing} on:dragend={drag_fin}/>
             {/if}
-            <svelte:self x= {xb} y={yb} w={wb} h={hb - 3} f={f.frames[1]}/>
+            <svelte:self x= {xb} y={yb} w={wb} h={hb - 3} f={f.frms[1]}/>
         {/if}
-    {:else if f.frames.length == 0}
+    {:else if f.frms.length == 0}
         {#each f.tabs as t, i  (t.uuid)}
             <TAB f={f} t={t} o={i}/>
         {/each}
@@ -114,9 +122,10 @@ const create_tab = (): void => {
     --h: 10px;
     position: relative;
     display: block;
-    background-color: #1f1f1f;
     width: var(--w);
     height: var(--h);
+    background-color: var(--bgc);
+    overflow: hidden;
 }
 #f.h {
     display: flex;
@@ -135,7 +144,7 @@ const create_tab = (): void => {
     height: 6px;
 }
 #f #create {
-    color: white;
+    color: var(--text);
     cursor: pointer;
     position: absolute;
     top: 1px;

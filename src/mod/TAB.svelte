@@ -1,5 +1,15 @@
 <script lang='ts'>
-import { root, debug, components, rndHex, Frame, Tab, Comp } from "../common.js";
+import { root,
+         debug,
+         components,
+         col_tab_text,
+         col_tab_dflt,
+         col_tab_actv,
+         rndHex,
+         Frame,
+         Tab,
+         Comp
+} from "../common.js";
 export let t: Tab;
 export let f: Frame;
 export let o: number;
@@ -18,7 +28,13 @@ const close    = (): void => root.remove_tab(t.uuid, f.uuid);
 const activate = (): void => root.activate_tab(t, f);
 </script>
 
-<div id="tab" style="--l:{o * 150}px; --c:{col};">
+<div id="tab"
+     style="--l:{o * 150}px;
+            --debug:{col};
+            --actv:{$col_tab_actv};
+            --dflt:{$col_tab_dflt};
+            --text:{$col_tab_text};"
+    >
     <div id="ear" on:click={activate} class:a={t.active}>
         {#if $debug}
             <span id='name' class="debug">{t.uuid.slice(0, 5)}</span>
@@ -42,11 +58,8 @@ const activate = (): void => root.activate_tab(t, f);
 
 <style>
 #tab {
-    --col: #ffffff;
     --rad1: 6px;
     --rad2: 3px;
-    --actv: #3f3f3f;
-    --dflt: #2f2f2f;
     --hgt: 30px;
     --wdt: 150px;
     --pad: 5px;
@@ -63,7 +76,7 @@ const activate = (): void => root.activate_tab(t, f);
     background-color: var(--dflt);
     overflow: hidden;
     padding: var(--pad);
-    color: var(--col);
+    color: var(--text);
     visibility: hidden;
 }
 #tab #inn.a {
@@ -93,7 +106,7 @@ const activate = (): void => root.activate_tab(t, f);
     font-size: 12px;
     border: none;
     outline: none;
-    color: white;
+    color: var(--text);
     background-color: var(--dflt);
     box-shadow: none;
     -webkit-appearance: none;
@@ -107,13 +120,13 @@ const activate = (): void => root.activate_tab(t, f);
     top: 6px;
     left: 8px;
     font-size: 12px;
-    color: var(--col);
+    color: var(--text);
 }
 #tab #ear #name.debug {
-    color: var(--c);
+    color: var(--debug);
 }
 #tab #ear #close {
-    color: var(--col);
+    color: var(--text);
     position: absolute;
     cursor: pointer;
     top: 0;

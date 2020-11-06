@@ -1,17 +1,17 @@
 import type { Writable } from "svelte/store";
 
 declare class Frame {
-    uuid:   string;
+    uuid: string;
+    frms: Frame[];
+    tabs: Tab[];
     layout: boolean;
     ratio:  number;
-    frames: Frame[];
-    tabs:   Tab[];
 
-    constructor(frames: Frame[], tabs: Tab[], layout: boolean);
+    constructor(frms: Frame[], tabs: Tab[], layout: boolean);
     removable(): boolean;
     emptyCheck(): void;
-     activeCheck(): void;
-    findFrame(uuid: string): Frame;
+    activeCheck(): void;
+    findFrm(uuid: string): Frame;
     findTab(uuid: string): Tab;
 }
 
@@ -20,7 +20,6 @@ declare class Tab {
     comp: string;
     active: boolean;
     parent: Frame;
-
     constructor(comp: string, parent: Frame);
 }
 
@@ -34,5 +33,9 @@ declare function gen_tree();
 
 export declare const root: any;
 export declare const components: Writable<Comp[]>;
-export declare let debug: Writable<boolean>;
+export declare let debug:        Writable<boolean>;
+export declare let col_frame:    Writable<string>;
+export declare let col_tab_text: Writable<string>;
+export declare let col_tab_dflt: Writable<string>;
+export declare let col_tab_actv: Writable<string>;
 export declare function rndHex(): string;
