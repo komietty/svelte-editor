@@ -1,5 +1,6 @@
 <div id="c">
     <p id="t">Test component A</p>
+    Game View
     <p> You can put any svelte component here. </p>
 </div>
 

@@ -10,7 +10,7 @@ Import svelditor by npm.
 ```
 npm i svelditor
 ```
-Then in your app, All you have to define components and root frame to start with.
+Then in your app, All you have to do is defining components and rootFrame to start with.
 
 ```Svelte
 <script>
@@ -46,7 +46,7 @@ col_tab_actv.set('#f5f5f5');
 <img src="img/color.png" width=100%>
 
 
-You can check uuid of tab or frame, with `debug` option enabled.
+You can check uuid of a tab or a frame, with `debug` option enabled. (it's shortened for viewing)
 ```js
 debug.set(true);
 ```

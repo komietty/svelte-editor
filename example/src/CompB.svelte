@@ -1,6 +1,8 @@
 <div id="c">
     <p id="t">Test component B</p>
+    Scene View
     <p> You can put any svelte component here. </p>
+    <input type="text">
 </div>
 
 <style>

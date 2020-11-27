@@ -1,35 +1,3 @@
-//import svelte from 'rollup-plugin-svelte';
-//import resolve from 'rollup-plugin-node-resolve';
-//import pkg from './package.json';
-//import sveltePreprocess from 'svelte-preprocess';
-//import typescript from '@rollup/plugin-typescript';
-
-//export default {
-    //input: './src/index.js',
-    //output: {
-      //file: pkg.main,
-      //format: 'cjs',
-      //name: 'svelditor'
-    //},
-    //external: [
-      //'svelte',
-      //'svelte/store',
-    //],
-    //plugins: [
-      //svelte({
-        //preprocess: sveltePreprocess(),
-      //}),
-      //resolve({
-        //browser: true,
-        //dedupe: ['svelte']
-      //}),
-      //typescript({
-        //sourceMap: false,
-        //inlineSources: false
-      //}),
-    //]
-//};
-
 import svelte from "rollup-plugin-svelte"
 import commonjs from "@rollup/plugin-commonjs"
 import resolve from "@rollup/plugin-node-resolve"

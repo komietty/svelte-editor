@@ -24,12 +24,12 @@ rootFrame.tabs.push(new Tab('CompA', rootFrame.frms[0]));
 root.init(rootFrame);
 
 // options
-debug.set(true);
-//col_frame.set('clear');
-//col_tab_text.set('#333333');
-//col_tab_dflt.set('#c5c5c5');
-//col_tab_actv.set('#f5f5f5');
+debug.set(false);
+col_frame.set('clear');
+col_tab_text.set('#333333');
+col_tab_dflt.set('#c5c5c5');
+col_tab_actv.set('#f5f5f5');
 </script>
  
 <!-- place tabs in absolute coordinate -->
-<FRM x={0} y={0} w={1080} h={640} bind:f={$root}/>
+<FRM x={0} y={0} w={document.body.clientWidth} h={document.body.clientHeight} bind:f={$root}/>
